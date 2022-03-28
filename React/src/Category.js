@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-const Category = () => {
+const Categories = () => {
   const [category, setCategory] = useState([]);
   const [edit, setEdit] = useState(false);
   const [updateCategory, setUpdateCategory] = useState({});
@@ -17,7 +17,7 @@ const Category = () => {
   useEffect(() => {
     getCategories();
   }, []);
-  const createCategory = (event) => {
+  const AddCategory = (event) => {
     event.preventDefault();
     const categoryObject = {
       id: event.target.id.value,
@@ -54,7 +54,7 @@ const Category = () => {
         console.log(error);
       });
   };
-  const editCategory = (id) => {
+  const categoryUpdate = (id) => {
     setEdit(true);
     setUpdateCategory(id);
   };
@@ -73,76 +73,69 @@ const Category = () => {
       });
   };
   return (
-    <div className="container-fluid text-center">
+    <div>
       {edit ? (
-        <div>
-          <h1 className="mt-3">Update Category</h1>
-          <form className="form-group" onSubmit={saveCategory}>
-            <b className="subHeading">Category Name : </b>
-            <input
-              className="form-control d-inline-flex w-50"
-              type="text"
-              name="name"
-              placeholder="Enter Category Name"
-            />
-            <br />
-            <b className="subHeading">Description : </b>
-            <textarea
-              className="form-control d-inline-flex w-50"
-              name="description"
-            />
-            <br />
-            <button className="btn btn-outline-primary">
-              <b>Update Category</b>
-            </button>
-            <br />
-          </form>
-        </div>
+        <form
+          onSubmit={saveCategory}
+          className="w-50 m-auto p-3 mt-4 mb-4 text-center border border-dark rounded"
+        >
+          <h1>Update Category</h1>
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter Category Name"
+            className="form-control w-75 m-auto mt-3 mb-4"
+          />
+          <textarea
+            name="description"
+            className="form-control w-75 m-auto mt-3 mb-4"
+            placeholder="Enter Category Description"
+          ></textarea>
+          <button className="btn btn-primary">Update Category</button>
+        </form>
       ) : (
-        <div>
-          <h1 className="mt-3">Category</h1>
-          <form className="form-group" onSubmit={createCategory}>
-            <b className="subHeading">Category Id : </b>
-            <input
-              className="form-control d-inline-flex w-50"
-              type="number"
-              name="id"
-              placeholder="Enter Category Id"
-            />
-            <br />
-            <b className="subHeading">Category Name : </b>
-            <input
-              className="form-control d-inline-flex w-50"
-              type="text"
-              name="name"
-              placeholder="Enter Category Name"
-            />
-            <br />
-            <b className="subHeading">Description : </b>
-            <textarea
-              className="form-control d-inline-flex w-50"
-              name="description"
-            />
-            <br />
-            <button className="btn btn-outline-primary">
-              <b>Add Category</b>
-            </button>
-            <br />
+        <div className="text-center">
+          <form
+            onSubmit={AddCategory}
+            className="w-50 m-auto p-3 mt-4 text-center border border-dark rounded"
+          >
+            <h1>Category</h1>
+            <div className="form-group">
+              <input
+                type="number"
+                name="id"
+                placeholder="Enter Category Id"
+                className="form-control w-75 m-auto mt-3 mb-4"
+              />
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter Category Name"
+                className="form-control w-75 m-auto mt-3 mb-4"
+              />
+              <textarea
+                name="description"
+                className="form-control w-75 m-auto mt-3 mb-4"
+                placeholder="Category Description"
+              ></textarea>
+              <button className="btn btn-primary">Add Category</button>
+              <br />
+            </div>
           </form>
-          <button className="btn btn-outline-danger" onClick={deleteAll}>
-            <b>Delete All</b>
+          <button className="btn btn-danger mt-3 mb-3" onClick={deleteAll}>
+            Delete All
           </button>
           <br />
         </div>
       )}
-      <div className="table table-bordered table-striped text-center">
-        <table className="text-center ">
+      <div className="table table-bordered table-striped text-center  ">
+        <table className="text-center w-50 m-auto ">
           <tr>
             <th>Id</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Delete</th>
             <th>Update</th>
+            <th>Delete</th>
           </tr>
           {category.map((val, index) => {
             return (
@@ -152,24 +145,24 @@ const Category = () => {
                 <td>{val.description}</td>
                 <td>
                   <button
+                    className="btn btn-outline-primary"
+                    onClick={() => {
+                      categoryUpdate(val.id);
+                    }}
+                  >
+                    Edit
+                  </button>
+                </td>
+                <td>
+                  <button
                     className="btn btn-outline-danger"
                     onClick={() => {
                       deleteCategory(val.id);
                     }}
                   >
-                    <b> Delete</b>
+                    Delete
                   </button>
                   <br />
-                </td>
-                <td>
-                  <button
-                    className="btn btn-outline-secondary"
-                    onClick={() => {
-                      editCategory(val.id);
-                    }}
-                  >
-                    <b> Edit</b>
-                  </button>
                 </td>
               </tr>
             );
@@ -179,4 +172,4 @@ const Category = () => {
     </div>
   );
 };
-export default Category;
+export default Categories;

@@ -12,15 +12,22 @@ export default function Cookie() {
       });
   };
   return (
-    <div className="cookie">
-      <form onSubmit={addCookie}>
-        <div>
-          <b>Enter City:</b>
-        </div>
-        <input type="text" placeholder="enter city" name="city" />
-        <br />
-        <button type="submit">Add Cookie</button>
-      </form>
-    </div>
+    <form
+      onSubmit={addCookie}
+      className="w-50 m-auto p-3 mt-4 text-center border border-dark rounded"
+    >
+      <h1>CITY COOKIE</h1>
+      <div className="form-group">
+        <label>Enter City</label>
+        <input
+          type="text"
+          name="city"
+          className="form-control w-75 m-auto mt-3 mb-4"
+        />
+        <button type="submit" className="btn btn-primary ">
+          Add Cookie
+        </button>
+      </div>
+    </form>
   );
 }

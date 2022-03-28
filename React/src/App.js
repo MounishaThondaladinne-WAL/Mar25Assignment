@@ -1,14 +1,17 @@
 import logo from "./logo.svg";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
 import CityCookie from "./citycookie";
 import CookieTime from "./citycookietime";
-import Category from "./category";
+import Categories from "./Category";
+import Dishes from "./dish";
 function App() {
   return (
     <div className="App">
       <CityCookie />
       <CookieTime />
-      <Category />
+      <Categories />
+      <Dishes />
     </div>
   );
 }

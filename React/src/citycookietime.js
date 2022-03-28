@@ -14,25 +14,34 @@ export default function CookieTime() {
       });
   };
   return (
-    <div className="cookie">
-      <form onSubmit={addCookie}>
-        <div>
-          <b>Enter Item:</b>
-        </div>
-        <input type="text" placeholder="enter Item" name="item" />
-        <br />
-        <div>
-          <b>Enter value:</b>
-        </div>
-        <input type="text" placeholder="enter value" name="itemvalue" />
-        <br />
-        <div>
-          <b>Enter Time:</b>
-        </div>
-        <input type="number" placeholder="enter time" name="time" />
-        <br />
-        <button type="submit">Add Cookie</button>
-      </form>
-    </div>
+    <form
+      onSubmit={addCookie}
+      className="w-50 m-auto p-3 mt-4 text-center border border-dark rounded"
+    >
+      <h1>Cookies</h1>
+      <div className="form-group">
+        <input
+          type="text"
+          name="item"
+          placeholder="Enter Cookie"
+          className="form-control w-75 m-auto mt-3 mb-4 text-center"
+        />
+        <input
+          type="text"
+          placeholder="Enter value"
+          name="itemvalue"
+          className="form-control w-75 m-auto mt-3 mb-4 text-center"
+        />
+        <input
+          type="number"
+          placeholder="Enter Time"
+          name="time"
+          className="form-control w-75 m-auto mt-3 mb-4 text-center"
+        />
+        <button type="submit" className="btn btn-primary ">
+          Add Cookie
+        </button>
+      </div>
+    </form>
   );
 }
